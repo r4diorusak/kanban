@@ -1,6 +1,6 @@
 # Kanban Board Application 📋
 
-![CI Build](https://github.com/YOUR_USERNAME/kanban/actions/workflows/ci-build.yaml/badge.svg)
+![CI Build](https://github.com/r4diorusak/kanban/actions/workflows/ci-build.yaml/badge.svg)
 ![Python](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11-blue)
 ![Flask](https://img.shields.io/badge/flask-3.0.0-green)
 ![Docker](https://img.shields.io/badge/docker-ready-blue)
@@ -119,7 +119,7 @@ This project fulfills all requirements for the peer-graded assignment:
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/kanban.git
+   git clone https://github.com/r4diorusak/kanban.git
    cd kanban
    ```
 
@@ -169,9 +169,7 @@ All required screenshots for the assignment are stored in the [`screenshots/`](s
 
 ## 🔗 Repository Link
 
-**GitHub Repository:** https://github.com/YOUR_USERNAME/kanban
-
-Replace `YOUR_USERNAME` with your actual GitHub username.
+**GitHub Repository:** https://github.com/r4diorusak/kanban
 
 ## 👤 Author
 
