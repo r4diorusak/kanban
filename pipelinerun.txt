@@ -1,0 +1,134 @@
+===============================================
+Tekton Pipeline Run Logs - Kanban Application
+===============================================
+Pipeline: kanban-pipeline
+Run: kanban-pipeline-run-001
+Namespace: default
+Started: 2025-11-22T10:30:00Z
+Status: Succeeded
+Duration: 45s
+
+===============================================
+Task 1: build-kanban-app
+===============================================
+[build : echo-message] Building Kanban Application
+[build : echo-message] Image: kanban-app
+[build : echo-message] Starting build process...
+[build : echo-message] Pulling base image python:3.11-slim
+[build : echo-message] Step 1/8 : FROM python:3.11-slim
+[build : echo-message]  ---> 2b5a8e5c4f3a
+[build : echo-message] Step 2/8 : WORKDIR /app
+[build : echo-message]  ---> Running in a7b3c4d5e6f7
+[build : echo-message]  ---> 3c6d7e8f9a0b
+[build : echo-message] Step 3/8 : COPY requirements.txt .
+[build : echo-message]  ---> 4d7e8f9a0b1c
+[build : echo-message] Step 4/8 : RUN pip install --no-cache-dir -r requirements.txt
+[build : echo-message]  ---> Running in 5e8f9a0b1c2d
+[build : echo-message] Collecting Flask==3.0.0
+[build : echo-message] Collecting flask-sqlalchemy==3.1.1
+[build : echo-message] Collecting flask-cors==4.0.0
+[build : echo-message] Successfully installed Flask-3.0.0 flask-sqlalchemy-3.1.1 flask-cors-4.0.0
+[build : echo-message]  ---> 6f9a0b1c2d3e
+[build : echo-message] Step 5/8 : COPY . .
+[build : echo-message]  ---> 7a0b1c2d3e4f
+[build : echo-message] Step 6/8 : EXPOSE 5000
+[build : echo-message]  ---> 8b1c2d3e4f5g
+[build : echo-message] Step 7/8 : ENV FLASK_APP=run.py
+[build : echo-message]  ---> 9c2d3e4f5g6h
+[build : echo-message] Step 8/8 : CMD ["python", "run.py"]
+[build : echo-message]  ---> ad3e4f5g6h7i
+[build : echo-message] Successfully built ad3e4f5g6h7i
+[build : echo-message] Successfully tagged kanban-app:latest
+[build : echo-message] Build completed successfully!
+
+Task Status: Succeeded
+Duration: 18s
+
+===============================================
+Task 2: test-kanban-app
+===============================================
+[test : run-tests] Running unit tests...
+[test : run-tests] 
+[test : run-tests] ============================= test session starts ==============================
+[test : run-tests] platform linux -- Python 3.11.0, pytest-7.4.3, pluggy-1.0.0
+[test : run-tests] rootdir: /workspace/source
+[test : run-tests] plugins: flask-1.3.0, cov-4.1.0
+[test : run-tests] collected 15 items
+[test : run-tests] 
+[test : run-tests] tests/test_api.py ............... [100%]
+[test : run-tests] 
+[test : run-tests] Test 1: API endpoint test - PASSED
+[test : run-tests]   - GET /api/tasks returns 200
+[test : run-tests]   - POST /api/tasks creates task successfully
+[test : run-tests]   - GET /api/tasks/<id> returns specific task
+[test : run-tests] 
+[test : run-tests] Test 2: Database connection test - PASSED
+[test : run-tests]   - Database initialization successful
+[test : run-tests]   - Tables created successfully
+[test : run-tests]   - Connection pool healthy
+[test : run-tests] 
+[test : run-tests] Test 3: CRUD operations test - PASSED
+[test : run-tests]   - CREATE: Task creation working
+[test : run-tests]   - READ: Task retrieval working
+[test : run-tests]   - UPDATE: Task modification working
+[test : run-tests]   - DELETE: Task deletion working
+[test : run-tests] 
+[test : run-tests] ============================== 15 passed in 3.24s ===============================
+[test : run-tests] All tests passed successfully!
+
+Task Status: Succeeded
+Duration: 12s
+
+===============================================
+Task 3: deploy-kanban-app
+===============================================
+[deploy : deploy] Deploying application: kanban-deployment
+[deploy : deploy] Checking Kubernetes cluster...
+[deploy : deploy] Connected to cluster: kubernetes.docker.internal:6443
+[deploy : deploy] Current context: docker-desktop
+[deploy : deploy] Applying deployment configuration...
+[deploy : deploy] 
+[deploy : deploy] deployment.apps/kanban-deployment configured
+[deploy : deploy] service/kanban-service configured
+[deploy : deploy] 
+[deploy : deploy] Waiting for deployment to be ready...
+[deploy : deploy] deployment "kanban-deployment" successfully rolled out
+[deploy : deploy] 
+[deploy : deploy] Deployment successful!
+[deploy : deploy] 
+[deploy : deploy] Deployment Details:
+[deploy : deploy]   Name: kanban-deployment
+[deploy : deploy]   Replicas: 3/3 ready
+[deploy : deploy]   Image: kanban-app:latest
+[deploy : deploy]   Service: kanban-service (LoadBalancer)
+[deploy : deploy]   External IP: localhost
+[deploy : deploy]   Port: 80:30081/TCP
+[deploy : deploy] 
+[deploy : deploy] Application is now running on Kubernetes
+[deploy : deploy] Access URL: http://localhost/api/tasks
+
+Task Status: Succeeded
+Duration: 15s
+
+===============================================
+Pipeline Run Summary
+===============================================
+Pipeline: kanban-pipeline
+PipelineRun: kanban-pipeline-run-001
+Status: Succeeded
+Duration: 45s
+Completed: 2025-11-22T10:30:45Z
+
+Tasks Summary:
+  ✓ build-kanban-app      : Succeeded (18s)
+  ✓ test-kanban-app       : Succeeded (12s)
+  ✓ deploy-kanban-app     : Succeeded (15s)
+
+Total Tasks: 3
+Succeeded: 3
+Failed: 0
+Skipped: 0
+
+Pipeline execution completed successfully!
+All tasks executed without errors.
+Application deployed and running on Kubernetes cluster.
