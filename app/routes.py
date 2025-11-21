@@ -19,6 +19,14 @@ def index():
         }
     })
 
+@api.route('/health')
+def health():
+    """Health check endpoint"""
+    return jsonify({
+        'status': 'healthy',
+        'message': 'API is running'
+    })
+
 @api.route('/tasks', methods=['GET'])
 def get_tasks():
     """Get all tasks"""
